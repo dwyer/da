@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "da.h"
+#include "da/da.h"
+#include "da/da_util.h"
 
 #ifndef DA_DEFAULT_CAP
 #define DA_DEFAULT_CAP 1
@@ -61,7 +62,7 @@ extern da_t *da_copy(da_t *dst, const da_t *src)
     else
         dst = da_new(src->spec);
     for (int i = 0; i < da_len(src); ++i)
-        da_append(dst, da_get(src, i)); // TODO: copy
+        da_append(dst, da_get(src, i));
     return dst;
 }
 

@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h> // rand
+#include <stdlib.h> /* rand */
 #include <string.h>
 
 #include "da/da.h"
@@ -27,11 +27,12 @@ static void *_realloc(void *dst, size_t size)
 
 void test_floats(void)
 {
+    int i;
     da_t *sins = da_new_f();
     da_setcap(sins, NUM_ITERS);
-    for (int i = 0; i < NUM_ITERS; ++i)
+    for (i = 0; i < NUM_ITERS; ++i)
         da_append_f(sins, sinf(i));
-    for (int i = 0; i < NUM_ITERS; ++i)
+    for (i = 0; i < NUM_ITERS; ++i)
         assert(da_get_f(sins, i) == sinf(i));
     da_free(sins);
     fprintf(stderr, "test_floats passed\n");
@@ -40,11 +41,12 @@ void test_floats(void)
 
 void test_doubles(void)
 {
+    int i;
     da_t *roots = da_new_d();
     da_setcap(roots, NUM_ITERS);
-    for (int i = 0; i < NUM_ITERS; ++i)
+    for (i = 0; i < NUM_ITERS; ++i)
         da_append_d(roots, sqrt(i));
-    for (int i = 0; i < NUM_ITERS; ++i)
+    for (i = 0; i < NUM_ITERS; ++i)
         assert(da_get_d(roots, i) == sqrt(i));
     da_free(roots);
     fprintf(stderr, "test_doubles passed\n");
@@ -53,11 +55,12 @@ void test_doubles(void)
 
 void test_strings(int argc, char *argv[])
 {
+    int i;
     da_t *args = da_new_s();
     da_setcap(args, argc);
-    for (int i = 0; i < argc; ++i)
+    for (i = 0; i < argc; ++i)
         da_append_s(args, argv[i]);
-    for (int i = 0; i < da_len(args); ++i)
+    for (i = 0; i < da_len(args); ++i)
         assert(!strcmp(da_get_s(args, i), argv[i]));
     da_free(args);
     fprintf(stderr, "test_strings passed\n");
@@ -66,13 +69,14 @@ void test_strings(int argc, char *argv[])
 
 void test_ints(void)
 {
+    int i;
     da_t *fibs = da_new_i();
     da_setcap(fibs, NUM_ITERS);
     da_append_i(fibs, 0);
     da_append_i(fibs, 1);
-    for (int i = 2; i < NUM_ITERS; ++i)
+    for (i = 2; i < NUM_ITERS; ++i)
         da_append_i(fibs, da_get_i(fibs, i-1) + da_get_i(fibs, i-2));
-    for (int i = 2; i < NUM_ITERS; ++i)
+    for (i = 2; i < NUM_ITERS; ++i)
         assert(da_get_i(fibs, i) == da_get_i(fibs, i-1) + da_get_i(fibs, i-2));
     da_free(fibs);
     fprintf(stderr, "test_ints passed\n");
@@ -82,12 +86,13 @@ void test_ints(void)
 void test_ulongs(void)
 {
     const int iters = 22;
+    int i;
     da_t *facts = da_new_ul();
     da_setcap(facts, iters);
     da_append_ul(facts, 1);
-    for (int i = 1; i < iters; ++i)
+    for (i = 1; i < iters; ++i)
         da_append_ul(facts, i * da_get_ul(facts, i-1));
-    for (int i = 1; i < iters; ++i)
+    for (i = 1; i < iters; ++i)
         assert(da_get_ul(facts, i) == da_get_ul(facts, i-1) * i);
     da_free(facts);
     fprintf(stderr, "test_ulongs passed\n");
@@ -97,18 +102,19 @@ void test_ulongs(void)
 void test_structs(void)
 {
     typedef struct { double x; double y; } vec2_t;
+    int i, j;
     DA_DEF_SPEC(v2, vec2_t, NULL, NULL, NULL);
     /* const da_spec_t spec_v = {.size = sizeof(vec2_t)}; */
     const int sqrt_iters = sqrt(NUM_ITERS);
     da_t *vecs = da_new(&da_spec_v2);
     da_setcap(vecs, NUM_ITERS);
-    for (int i = 0; i < sqrt_iters; ++i) {
-        for (int j = 0; j < sqrt_iters; ++j) {
+    for (i = 0; i < sqrt_iters; ++i) {
+        for (j = 0; j < sqrt_iters; ++j) {
             vec2_t v = {i, j};
             da_append(vecs, &v);
         }
     }
-    for (int i = 0; i < da_len(vecs); ++i) {
+    for (i = 0; i < da_len(vecs); ++i) {
         vec2_t *vp = da_get(vecs, i);
         assert(vp->x == i / sqrt_iters);
         assert(vp->y == i % sqrt_iters);
@@ -120,19 +126,19 @@ void test_structs(void)
 
 void test_slices(void)
 {
+    int i, k = 3;
     da_t *nums = da_new_i();
     int a = 42, n = 10, b = a + n;
     da_setcap(nums, NUM_ITERS);
-    for (int i = 0; i < NUM_ITERS; ++i)
+    for (i = 0; i < NUM_ITERS; ++i)
         da_append_i(nums, i);
     da_t slice;
-    int k = 3;
     while (k--) {
         da_slice(&slice, nums, a, b);
         assert(da_len(&slice) == n);
-        for (int i = 0; i < da_len(&slice); ++i)
+        for (i = 0; i < da_len(&slice); ++i)
             da_set_i(&slice, i, da_get_i(&slice, i) * 2);
-        for (int i = a; i < b; ++i)
+        for (i = a; i < b; ++i)
             assert(da_get_i(nums, i) == i * 2);
         a *= 10;
         b *= 10;
@@ -151,12 +157,13 @@ static int cmp_ip(const int *xp, const int *yp)
 
 void test_sort(void)
 {
+    int i, last;
     da_t *nums = da_new_i();
     da_setcap(nums, NUM_ITERS);
-    for (int i = 0; i < NUM_ITERS; ++i)
+    for (i = 0; i < NUM_ITERS; ++i)
         da_append_i(nums, rand());
     da_sort(nums, (da_cmp_func_t *)cmp_ip);
-    for (int i = 0, last = -1; i < NUM_ITERS; ++i) {
+    for (i = 0, last = -1; i < NUM_ITERS; ++i) {
         int this = da_get_i(nums, i);
         assert(last <= this);
         last = this;
