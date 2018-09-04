@@ -3,9 +3,24 @@
 
 #include <stddef.h>
 
+/**
+ * Returns the capacity of the given array.
+ */
 #define da_cap(da) ((da)->cap)
+
+/**
+ * Returns the length of the given array.
+ */
 #define da_len(da) ((da)->len)
+
+/**
+ * Returns the maximum length of the given array.
+ */
 #define da_maxlen(da) (INT_MAX / (da)->spec->size)
+
+/**
+ * Returns non-zero if the given array is mutable.
+ */
 #define da_ismutable(da) ((da)->cap >= 0)
 
 
@@ -14,13 +29,47 @@ typedef void da_copy_func_t(void *, const void *);
 typedef void da_free_func_t(void *);
 typedef int da_cmp_func_t(const void *, const void *);
 
+/**
+ * `da_spec_t` defines the type of element contained by the dynamic array. Every
+ * `da_t` must contain a reference to a `da_spec_t`. A spec can and should be
+ * defined once for each type and reused for every dynamic array that handles
+ * the type it described.
+ */
 typedef struct {
+    /**
+     * REQUIRED
+     *
+     * The `sizeof` the type contained by the dynamic array.
+     */
     size_t size;
+
+    /**
+     * OPTIONAL
+     *
+     * The initializer for the type contained by the dynamic array.
+     */
     da_init_func_t *init;
+
+    /**
+     * OPTIONAL
+     *
+     * A pointer to a function that takes two pointers to the type defined this
+     * spec and copies the second into the first.
+     */
     da_copy_func_t *copy;
+
+    /*
+     * OPTIONAL
+     *
+     * A pointer to a function that takes a pointer to the type described by
+     * this spec and deallocates it.
+     */
     da_free_func_t *free;
 } da_spec_t;
 
+/**
+ * `da_t` is the dynamic array type.
+ */
 typedef struct {
     const da_spec_t *spec;
     void *data;
