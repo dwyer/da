@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -115,7 +114,7 @@ extern void da_setcap(da_t *da, int cap)
 static void da_setlen(da_t *da, int n)
 {
     _da_assert(da_ismutable(da), "da_setlen: passed immutable array\n");
-    assert(n >= 0);
+    _da_assert(n >= 0, "da_setlen: passed negative length\n");
     da->len = n;
     if (da->cap < da->len) {
         int cap = da->cap ? da->cap : da_default_cap;
@@ -132,7 +131,7 @@ static void da_setlen(da_t *da, int n)
 
 extern void da_append(da_t *da, const void *ep)
 {
-    _da_assert(da_ismutable(da), "da_array: passed immutable array\n");
+    _da_assert(da_ismutable(da), "da_append: passed immutable array\n");
     da_setlen(da, da->len+1);
     da_set(da, da->len-1, ep);
 }
@@ -140,8 +139,9 @@ extern void da_append(da_t *da, const void *ep)
 
 extern void da_extend(da_t *dst, const da_t *src)
 {
-    _da_assert(da_ismutable(dst), "da_array: passed immutable array\n");
-    assert(dst->spec->size == src->spec->size);
+    _da_assert(da_ismutable(dst), "da_extend: passed immutable array\n");
+    _da_assert(dst->spec == src->spec,
+            "da_extend: dst and src spec mismatch\n");
     int i = dst->len;
     da_setlen(dst, dst->len + src->len);
     memcpy((u8 *)dst->data + dst->spec->size * i, src->data, dst->spec->size * src->len);
