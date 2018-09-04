@@ -1,7 +1,7 @@
 CFLAGS+=-Wall -Wextra
 INSTALL_PREFIX=/usr/local
 
-.PHONY: test clean
+.PHONY: test clean install uninstall
 
 libda.a: da.o
 	ar rc $@ $+
