@@ -4,7 +4,10 @@
 #include <stdlib.h> // rand
 #include <string.h>
 
-#include "da.h"
+#include "da/da.h"
+#include "da/da_int.h"
+#include "da/da_str.h"
+#include "da/da_util.h"
 
 #define NUM_ITERS 1000000
 #define DEFAULT_CAP 1

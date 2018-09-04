@@ -4,7 +4,8 @@
 #include <stdlib.h> // rand
 #include <time.h> // time
 
-#include "da.h"
+#include "da/da.h"
+#include "da/da_util.h"
 
 typedef enum {SUIT_SPADES, SUIT_DIAMONDS, SUIT_CLUBS, SUIT_HEARTS} suit_t;
 

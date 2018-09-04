@@ -4,5 +4,7 @@
 /* TODO: delete this file. */
 
 #include "da/da.h"
+#include "da/da_int.h"
+#include "da/da_str.h"
 
 #endif
