@@ -2,6 +2,9 @@
 #define __DA_UTILS__
 
 
+#ifndef _DA_NO_DOCS
+
+
 #define _DA_DECL_NEW(suf, T) \
     da_t *da_new_##suf(void)
 
@@ -69,6 +72,9 @@
                 "da_append_" # suf ": da_t passed does not support type " # T); \
         da_append(da, &e); \
     }
+
+
+#endif
 
 
 #define DA_DECL_SPEC(suf, T) \

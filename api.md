@@ -6,18 +6,6 @@
 `define `[`da_len`](#da_8h_1a303efb267601c14b434ceb359bc11f78)            | 
 `define `[`da_maxlen`](#da_8h_1ae7f65059a1c47bd7919050921e16a078)            | 
 `define `[`da_ismutable`](#da_8h_1a973206acf4ca812a3d2961d029e3e750)            | 
-`define `[`_DA_DECL_NEW`](#da__util_8h_1ace38382bb7fd3e41417f048d3cc786de)            | 
-`define `[`_DA_DEF_NEW`](#da__util_8h_1ac3ed12a764bd7f92790bfac87a93d36b)            | 
-`define `[`_DA_DECL_INIT`](#da__util_8h_1a60f17d4f3aadbb06dc98532121a194d8)            | 
-`define `[`_DA_DEF_INIT`](#da__util_8h_1a51f965e4ae710187ff77d0d722b5d4fa)            | 
-`define `[`_DA_DECL_GET`](#da__util_8h_1aed9c44c78fee3f8a521c29d7056da6b6)            | 
-`define `[`_DA_DEF_GET`](#da__util_8h_1a19e2c7e8f8706ddd6fcd7074f7c66641)            | 
-`define `[`_DA_DECL_SET`](#da__util_8h_1a347f4f45d1600f82aec97511d94e885b)            | 
-`define `[`_DA_DEF_SET`](#da__util_8h_1af8e9ea2cc55e922d76dcf55c3128a675)            | 
-`define `[`_DA_DECL_POP`](#da__util_8h_1a6ca8bf528371cbbd9908dfefdd44737e)            | 
-`define `[`_DA_DEF_POP`](#da__util_8h_1a9ae309797f60c33020ca9a55bf9f3361)            | 
-`define `[`_DA_DECL_APPEND`](#da__util_8h_1af32b808c80215725b68186d689bf7292)            | 
-`define `[`_DA_DEF_APPEND`](#da__util_8h_1a1ca3b2d255ac64d687edfc96c90e2147)            | 
 `define `[`DA_DECL_SPEC`](#da__util_8h_1a7c3a5ba38c5b9c93fadbfb19ccda84b4)            | 
 `define `[`DA_DEF_SPEC`](#da__util_8h_1a6a4ddb749c9a43e1889235dae6fb460d)            | 
 `define `[`DA_DECL_HELPERS`](#da__util_8h_1acb04d2623ed07b0dadd050257a5dc1fa)            | 
@@ -51,30 +39,6 @@
 #### `define `[`da_maxlen`](#da_8h_1ae7f65059a1c47bd7919050921e16a078) 
 
 #### `define `[`da_ismutable`](#da_8h_1a973206acf4ca812a3d2961d029e3e750) 
-
-#### `define `[`_DA_DECL_NEW`](#da__util_8h_1ace38382bb7fd3e41417f048d3cc786de) 
-
-#### `define `[`_DA_DEF_NEW`](#da__util_8h_1ac3ed12a764bd7f92790bfac87a93d36b) 
-
-#### `define `[`_DA_DECL_INIT`](#da__util_8h_1a60f17d4f3aadbb06dc98532121a194d8) 
-
-#### `define `[`_DA_DEF_INIT`](#da__util_8h_1a51f965e4ae710187ff77d0d722b5d4fa) 
-
-#### `define `[`_DA_DECL_GET`](#da__util_8h_1aed9c44c78fee3f8a521c29d7056da6b6) 
-
-#### `define `[`_DA_DEF_GET`](#da__util_8h_1a19e2c7e8f8706ddd6fcd7074f7c66641) 
-
-#### `define `[`_DA_DECL_SET`](#da__util_8h_1a347f4f45d1600f82aec97511d94e885b) 
-
-#### `define `[`_DA_DEF_SET`](#da__util_8h_1af8e9ea2cc55e922d76dcf55c3128a675) 
-
-#### `define `[`_DA_DECL_POP`](#da__util_8h_1a6ca8bf528371cbbd9908dfefdd44737e) 
-
-#### `define `[`_DA_DEF_POP`](#da__util_8h_1a9ae309797f60c33020ca9a55bf9f3361) 
-
-#### `define `[`_DA_DECL_APPEND`](#da__util_8h_1af32b808c80215725b68186d689bf7292) 
-
-#### `define `[`_DA_DEF_APPEND`](#da__util_8h_1a1ca3b2d255ac64d687edfc96c90e2147) 
 
 #### `define `[`DA_DECL_SPEC`](#da__util_8h_1a7c3a5ba38c5b9c93fadbfb19ccda84b4) 
 
