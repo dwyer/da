@@ -216,7 +216,7 @@ static void _copy_s(char **dst, const char **src)
 static void _free_s(char **sp)
 {
     if (*sp)
-        free(*sp);
+        da_dealloc(*sp);
 }
 
 
