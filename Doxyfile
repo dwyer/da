@@ -1,0 +1,9 @@
+PROJECT_NAME           = "da"
+PROJECT_NUMBER         =
+PROJECT_BRIEF          = "A dynamic array library for C."
+OUTPUT_DIRECTORY       =
+INPUT                  = da/
+FILE_PATTERNS          = *.h
+EXTRACT_ALL = YES
+GENERATE_XML=YES
+GENERATE_LATEX=NO
