@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "da/da.h"
+#include "da/da_int.h"
+#include "da/da_str.h"
 #include "da/da_util.h"
 
 #ifndef DA_DEFAULT_CAP
@@ -226,8 +228,6 @@ DA_DEF_HELPERS(ul, unsigned long)
 
 DA_DEF_HELPERS(ll, long long)
 DA_DEF_HELPERS(ull, unsigned long long)
-
-#include <stdint.h>
 
 DA_DEF_HELPERS(i8, int8_t)
 DA_DEF_HELPERS(i16, int16_t)

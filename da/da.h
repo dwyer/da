@@ -3,10 +3,6 @@
 
 #include <stddef.h>
 
-#ifndef DA_STDINT
-#define DA_STDINT 1
-#endif
-
 #define da_cap(da) ((da)->cap)
 #define da_len(da) ((da)->len)
 #define da_maxlen(da) (INT_MAX / (da)->spec->size)
