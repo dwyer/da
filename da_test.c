@@ -110,7 +110,9 @@ void test_structs(void)
     da_setcap(vecs, NUM_ITERS);
     for (i = 0; i < sqrt_iters; ++i) {
         for (j = 0; j < sqrt_iters; ++j) {
-            vec2_t v = {i, j};
+            vec2_t v;
+            v.x = i;
+            v.y = j;
             da_append(vecs, &v);
         }
     }
@@ -126,13 +128,11 @@ void test_structs(void)
 
 void test_slices(void)
 {
-    int i, k = 3;
-    da_t *nums = da_new_i();
-    int a = 42, n = 10, b = a + n;
+    int i, k = 3, a = 42, n = 10, b = a + n;
+    da_t slice, *nums = da_new_i();
     da_setcap(nums, NUM_ITERS);
     for (i = 0; i < NUM_ITERS; ++i)
         da_append_i(nums, i);
-    da_t slice;
     while (k--) {
         da_slice(&slice, nums, a, b);
         assert(da_len(&slice) == n);

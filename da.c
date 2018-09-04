@@ -57,11 +57,12 @@ extern void da_free(da_t *da)
 
 extern da_t *da_copy(da_t *dst, const da_t *src)
 {
+    int i;
     if (dst)
         da_init(dst, src->spec);
     else
         dst = da_new(src->spec);
-    for (int i = 0; i < da_len(src); ++i)
+    for (i = 0; i < da_len(src); ++i)
         da_append(dst, da_get(src, i));
     return dst;
 }
@@ -127,10 +128,11 @@ extern void da_append(da_t *da, const void *ep)
 
 extern void da_extend(da_t *dst, const da_t *src)
 {
+    int i;
     _da_assert(da_ismutable(dst), "da_extend: passed immutable array\n");
     _da_assert(dst->spec == src->spec,
             "da_extend: dst and src spec mismatch\n");
-    int i = dst->len;
+    i = dst->len;
     da_setlen(dst, dst->len + src->len);
     memcpy((u8 *)dst->data + dst->spec->size * i, src->data, dst->spec->size * src->len);
 }
@@ -138,8 +140,9 @@ extern void da_extend(da_t *dst, const da_t *src)
 
 extern void *da_pop(da_t *da)
 {
+    void *e;
     _da_assert(da_len(da) > 0, "da_pop: passed zero-length array\n");
-    void *e = da_get(da, -1);
+    e = da_get(da, -1);
     da->len--;
     return e;
 }
@@ -147,8 +150,9 @@ extern void *da_pop(da_t *da)
 
 extern void da_clear(da_t *da)
 {
+    int i;
     if (da->spec->free)
-        for (int i = 0; i < da_len(da); ++i)
+        for (i = 0; i < da_len(da); ++i)
             da->spec->free(da_get(da, i));
     da->len = 0;
 }
@@ -203,8 +207,7 @@ static void _copy_s(char **dst, const char **src)
 
 static void _free_s(char **sp)
 {
-    if (*sp)
-        da_dealloc(*sp);
+    da_dealloc(*sp);
 }
 
 
@@ -213,16 +216,19 @@ DA_DEF_HELPERS(d, double)
 DA_DEF_HELPERS(f, float)
 DA_DEF_HELPERS(i, int)
 DA_DEF_HELPERS(l, long)
-DA_DEF_HELPERS(ll, long long)
 DA_DEF_HELPERS_EX(s, char *, NULL, (da_copy_func_t *)_copy_s,
         (da_free_func_t *)_free_s)
 DA_DEF_HELPERS(uc, unsigned char)
 DA_DEF_HELPERS(ui, unsigned int)
 DA_DEF_HELPERS(ul, unsigned long)
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+
+DA_DEF_HELPERS(ll, long long)
 DA_DEF_HELPERS(ull, unsigned long long)
 
+#include <stdint.h>
 
-#if DA_STDINT
 DA_DEF_HELPERS(i8, int8_t)
 DA_DEF_HELPERS(i16, int16_t)
 DA_DEF_HELPERS(i32, int32_t)
@@ -231,4 +237,5 @@ DA_DEF_HELPERS(u8, uint8_t)
 DA_DEF_HELPERS(u16, uint16_t)
 DA_DEF_HELPERS(u32, uint32_t)
 DA_DEF_HELPERS(u64, uint64_t)
+
 #endif
