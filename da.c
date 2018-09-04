@@ -201,7 +201,14 @@ extern void _da_assert(int expr, const char *msg, ...)
 
 static void _copy_s(char **dst, const char **src)
 {
-    *dst = *src ? strdup(*src) : NULL;
+    size_t n;
+    if (!*src) {
+        *dst = NULL;
+        return;
+    }
+    n = strlen(*src) + 1;
+    *dst = malloc(n);
+    strlcpy(*dst, *src, n);
 }
 
 
