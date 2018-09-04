@@ -91,15 +91,15 @@
 
 #define DA_DEF_HELPERS_EX(suf, T, init, copy, free) \
     const DA_DEF_SPEC(suf, T, init, copy, free); \
-    extern _DA_DEF_NEW(suf, T); \
-    extern _DA_DEF_INIT(suf, T); \
-    extern _DA_DEF_GET(suf, T); \
-    extern _DA_DEF_SET(suf, T); \
-    extern _DA_DEF_POP(suf, T); \
-    extern _DA_DEF_APPEND(suf, T);
+    extern _DA_DEF_NEW(suf, T) \
+    extern _DA_DEF_INIT(suf, T) \
+    extern _DA_DEF_GET(suf, T) \
+    extern _DA_DEF_SET(suf, T) \
+    extern _DA_DEF_POP(suf, T) \
+    extern _DA_DEF_APPEND(suf, T)
 
 
 #define DA_DEF_HELPERS(suf, T) \
-    DA_DEF_HELPERS_EX(suf, T, NULL, NULL, NULL);
+    DA_DEF_HELPERS_EX(suf, T, NULL, NULL, NULL)
 
 #endif

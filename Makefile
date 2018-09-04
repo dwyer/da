@@ -1,4 +1,4 @@
-CFLAGS+=-Wall -Wextra
+CFLAGS+=-Wall -Wextra -pedantic
 INSTALL_PREFIX=/usr/local
 
 .PHONY: test clean install uninstall

@@ -3,6 +3,6 @@
 
 #include "da_util.h"
 
-DA_DECL_HELPERS(s, char *);
+DA_DECL_HELPERS(s, char *)
 
 #endif

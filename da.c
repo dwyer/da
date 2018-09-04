@@ -208,27 +208,27 @@ static void _free_s(char **sp)
 }
 
 
-DA_DEF_HELPERS(c, char);
-DA_DEF_HELPERS(d, double);
-DA_DEF_HELPERS(f, float);
-DA_DEF_HELPERS(i, int);
-DA_DEF_HELPERS(l, long);
-DA_DEF_HELPERS(ll, long long);
+DA_DEF_HELPERS(c, char)
+DA_DEF_HELPERS(d, double)
+DA_DEF_HELPERS(f, float)
+DA_DEF_HELPERS(i, int)
+DA_DEF_HELPERS(l, long)
+DA_DEF_HELPERS(ll, long long)
 DA_DEF_HELPERS_EX(s, char *, NULL, (da_copy_func_t *)_copy_s,
-        (da_free_func_t *)_free_s);
-DA_DEF_HELPERS(uc, unsigned char);
-DA_DEF_HELPERS(ui, unsigned int);
-DA_DEF_HELPERS(ul, unsigned long);
-DA_DEF_HELPERS(ull, unsigned long long);
+        (da_free_func_t *)_free_s)
+DA_DEF_HELPERS(uc, unsigned char)
+DA_DEF_HELPERS(ui, unsigned int)
+DA_DEF_HELPERS(ul, unsigned long)
+DA_DEF_HELPERS(ull, unsigned long long)
 
 
 #if DA_STDINT
-DA_DEF_HELPERS(i8, int8_t);
-DA_DEF_HELPERS(i16, int16_t);
-DA_DEF_HELPERS(i32, int32_t);
-DA_DEF_HELPERS(i64, int64_t);
-DA_DEF_HELPERS(u8, uint8_t);
-DA_DEF_HELPERS(u16, uint16_t);
-DA_DEF_HELPERS(u32, uint32_t);
-DA_DEF_HELPERS(u64, uint64_t);
+DA_DEF_HELPERS(i8, int8_t)
+DA_DEF_HELPERS(i16, int16_t)
+DA_DEF_HELPERS(i32, int32_t)
+DA_DEF_HELPERS(i64, int64_t)
+DA_DEF_HELPERS(u8, uint8_t)
+DA_DEF_HELPERS(u16, uint16_t)
+DA_DEF_HELPERS(u32, uint32_t)
+DA_DEF_HELPERS(u64, uint64_t)
 #endif
