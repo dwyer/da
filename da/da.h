@@ -78,24 +78,24 @@ typedef struct {
 } da_t;
 
 /**
- * Allocates and initializes a new da with the given spec and returns it. The
- * returned value must be freed to avoid memory leaks.
+ * Allocates and initializes a new `da_t` with the given `spec` and returns it.
+ * The returned value must be freed to avoid memory leaks.
  */
-extern da_t *da_new(const da_spec_t *sp);
+extern da_t *da_new(const da_spec_t *spec);
 
 /**
- * Initialize a previously allocated da with the given spec.
+ * Initialize a previously allocated `da` with the given `spec`.
  */
-extern void da_init(da_t *da, const da_spec_t *sp);
+extern void da_init(da_t *da, const da_spec_t *spec);
 
 /**
- * Deinitializes the given da. If `da`'s `spec`'s `free` pointer is set,
+ * Deinitializes the given `da`. If `da`'s `spec`'s `free` pointer is set,
  * it is called on all the members. `da`'s internal memory is then cleared.
  */
 extern void da_deinit(da_t *da);
 
 /**
- * Deinitializes the given da then deallocates it.
+ * Deinitializes the given `da` then deallocates it.
  */
 extern void da_free(da_t *da);
 
