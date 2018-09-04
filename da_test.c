@@ -9,6 +9,19 @@
 #define NUM_ITERS 1000000
 #define DEFAULT_CAP 1
 
+
+static size_t da_num_allocs = 0;
+static size_t da_bytes_alloced = 0;
+
+
+static void *_realloc(void *dst, size_t size)
+{
+    da_num_allocs++;
+    da_bytes_alloced += size;
+    return realloc(dst, size);
+}
+
+
 void test_floats(void)
 {
     da_t *sins = da_new_f();
@@ -153,6 +166,7 @@ void test_sort(void)
 int main(int argc, char *argv[])
 {
     da_default_cap = DEFAULT_CAP;
+    da_realloc = _realloc;
     test_doubles();
     test_floats();
     test_ints();

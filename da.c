@@ -11,23 +11,10 @@
 
 typedef unsigned char u8;
 
-static void *_realloc(void *dst, size_t size);
-static void _dealloc(void *dst);
-
-void *(*da_realloc)(void *, size_t) = _realloc;
+void *(*da_realloc)(void *, size_t) = realloc;
 void (*da_dealloc)(void *) = free;
 
-size_t da_num_allocs = 0;
-size_t da_bytes_alloced = 0;
 int da_default_cap = DA_DEFAULT_CAP;
-
-
-static void *_realloc(void *dst, size_t size)
-{
-    da_num_allocs++;
-    da_bytes_alloced += size;
-    return realloc(dst, size);
-}
 
 
 extern void da_init(da_t *da, const da_spec_t *sp)

@@ -57,8 +57,6 @@ extern void *(*da_realloc)(void *, size_t);
 extern void (*da_dealloc)(void *);
 
 extern int da_default_cap;
-extern size_t da_num_allocs;
-extern size_t da_bytes_alloced;
 
 
 #define _DA_DECL_NEW(suf, T) \
